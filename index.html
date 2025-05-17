@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Consulta CPF - gov.br (simulado)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #1351b4;
+      text-align: center;
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #1351b4;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .resultado, .erro {
+      margin-top: 20px;
+      padding: 10px;
+      display: none;
+      border-radius: 4px;
+    }
+    .resultado {
+      background: #e0f7e9;
+      border: 1px solid #81c784;
+    }
+    .erro {
+      background: #ffebee;
+      border: 1px solid #e57373;
+      color: #c62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Consulta CPF - gov.br</h2>
+    <label for="cpf">Digite seu CPF:</label>
+    <input type="text" id="cpf" placeholder="Ex: 122.198.106-40 ou 12219810640">
+    <button onclick="consultarCPF()">Consultar</button>
+
+    <div class="resultado" id="resultado">
+      <strong>Nome:</strong> João da Silva<br>
+      <strong>Situação cadastral:</strong> Regular<br>
+      <strong>Data de nascimento:</strong> 24/01/2006
+    </div>
+
+    <div class="erro" id="erro">
+      CPF não encontrado ou inválido.
+    </div>
+  </div>
+
+  <script>
+    function limparCPF(cpf) {
+      return cpf.replace(/\D/g, ''); // Remove tudo que não for número
+    }
+
+    function consultarCPF() {
+      const cpfDigitado = document.getElementById("cpf").value;
+      const cpfLimpo = limparCPF(cpfDigitado);
+      const resultado = document.getElementById("resultado");
+      const erro = document.getElementById("erro");
+
+      resultado.style.display = "none";
+      erro.style.display = "none";
+
+      if (cpfLimpo === "12219810640") {
+        resultado.style.display = "block";
+      } else {
+        erro.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
